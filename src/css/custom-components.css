@@ -1,0 +1,3 @@
+.btn {
+  @apply inline-block bg-blue rounded-lg p-2 text-white;
+}
