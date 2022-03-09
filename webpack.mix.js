@@ -5,20 +5,23 @@ mix.setResourceRoot('dist');
 
 mix
   .js('./src/js/index.js', './dist/js')
-  .webpackConfig({ devtool: 'source-map' })
+  .sourceMaps()
   .then(() => {
     fs.unlinkSync('mix-manifest.json');
   });
 
-mix.css('./src/css/style.css', './dist/css').options({
-  processCssUrls: false,
-  postCss: [
-    require('postcss-import'),
-    require('tailwindcss/nesting'),
-    require('tailwindcss'),
-    require('autoprefixer'),
-  ],
-});
+mix
+  .css('./src/css/style.css', './dist/css')
+  .options({
+    processCssUrls: false,
+    postCss: [
+      require('postcss-import'),
+      require('tailwindcss/nesting'),
+      require('tailwindcss'),
+      require('autoprefixer'),
+    ],
+  })
+  .sourceMaps();
 
 mix.browserSync({
   server: {
